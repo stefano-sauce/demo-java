@@ -1,11 +1,23 @@
 package com.saucedemo.selenium.selenium_features;
 
 import com.saucedemo.selenium.TestBase;
+import java.util.List;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("attribute_property")
 public class AttributePropertyTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("attribute_property");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

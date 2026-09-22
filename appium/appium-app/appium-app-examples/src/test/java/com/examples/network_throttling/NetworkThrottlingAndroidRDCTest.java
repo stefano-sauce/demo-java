@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Arrays;
 
 import static com.helpers.Constants.SAUCE_EU_URL;
 import static com.helpers.Constants.SAUCE_US_URL;
@@ -52,6 +53,7 @@ public class NetworkThrottlingAndroidRDCTest {
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("appiumVersion", "latest");
+        sauceOptions.setCapability("tags", Arrays.asList("appium", "junit4", "java", "network_throttling"));
 
         String appName = "SauceLabs-Demo-App.apk";
 

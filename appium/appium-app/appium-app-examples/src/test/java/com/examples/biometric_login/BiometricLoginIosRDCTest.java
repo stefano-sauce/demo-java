@@ -87,7 +87,7 @@ public class BiometricLoginIosRDCTest {
 
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "biometricAuth-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "iOS","Biometric Login");
+        List<String> tags = Arrays.asList("appium", "junit4", "java", "biometric_login");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

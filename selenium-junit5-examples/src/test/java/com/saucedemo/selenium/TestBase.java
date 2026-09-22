@@ -77,7 +77,16 @@ public class TestBase {
     options.put("name", testInfo.getDisplayName());
     options.put("build", System.getProperty("build.name"));
     options.put("seleniumVersion", "4.32.0");
+    options.put("tags", sauceTags());
     return options;
+  }
+
+  /**
+   * Sauce Labs tags identifying this test's driver framework, test runner and language.
+   * Subclasses override this to append their own use-case tag.
+   */
+  protected List<String> sauceTags() {
+    return new ArrayList<>(List.of("selenium", "junit5", "java"));
   }
 
   public class SauceTestWatcher implements TestWatcher {

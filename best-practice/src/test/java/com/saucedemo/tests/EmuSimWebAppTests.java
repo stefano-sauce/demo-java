@@ -10,6 +10,7 @@ import com.saucedemo.pages.ProductsPage;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 /** Emulator / Simulator Web Tests. */
 @RunWith(Parameterized.class)
 public class EmuSimWebAppTests extends MobileTestsBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("mobile_web_emu_sim");
+    return tags;
+  }
 
   /*
    * Configure our data driven parameters
@@ -71,6 +79,7 @@ public class EmuSimWebAppTests extends MobileTestsBase {
     MutableCapabilities sauceOptions = new MutableCapabilities();
     sauceOptions.setCapability("name", testName.getMethodName());
     sauceOptions.setCapability("build", buildName);
+    sauceOptions.setCapability("tags", sauceTags());
 
     capabilities.setCapability("sauce:options", sauceOptions);
     // EmuSim devices have Simulator/Emulator in the name

@@ -8,8 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
@@ -21,6 +23,15 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class BaseTest {
+
+  /**
+   * Base Sauce Labs tags shared by all tests extending this class. Subclasses override this to
+   * append their own use-case tag.
+   */
+  protected List<String> sauceTags() {
+    return new ArrayList<>(Arrays.asList("selenium", "junit4", "java"));
+  }
+
   @Parameterized.Parameter public String platform;
 
   @Parameterized.Parameter(1)
@@ -115,6 +126,7 @@ public class BaseTest {
     sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.setCapability("name", name.getMethodName());
+    sauceOptions.setCapability("tags", sauceTags());
 
     if (!isBuildCap) { // handle build cap
       LocalDateTime dateTime = LocalDateTime.now();

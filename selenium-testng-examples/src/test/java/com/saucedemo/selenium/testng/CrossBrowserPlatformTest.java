@@ -3,6 +3,7 @@ package com.saucedemo.selenium.testng;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import com.saucelabs.saucebindings.testng.SauceParameterizedBaseTest;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -39,16 +40,17 @@ public class CrossBrowserPlatformTest extends SauceParameterizedBaseTest {
     sauceOptions.setCapability("browserName", parameters[0]);
     sauceOptions.setCapability("browserVersion", parameters[1]);
     sauceOptions.setCapability("platformName", parameters[2]);
+    sauceOptions.sauce().setTags(Arrays.asList("selenium", "testng", "java", "cross_browser"));
     return sauceOptions;
   }
 
-  @Test(dataProvider = "sauceBrowsers")
+  @Test(dataProvider = "sauceBrowsers", groups = {"selenium", "testng", "java", "cross_browser"})
   public void testCase1(String browser, String browserVersion, String platformName) {
     getDriver().navigate().to("https://www.saucedemo.com");
     Assert.assertEquals("Swag Labs", getDriver().getTitle());
   }
 
-  @Test(dataProvider = "sauceBrowsers")
+  @Test(dataProvider = "sauceBrowsers", groups = {"selenium", "testng", "java", "cross_browser"})
   public void testCase2(String browser, String browserVersion, String platformName) {
     getDriver().navigate().to("https://www.saucedemo.com");
     Assert.assertEquals("Swag Labs", getDriver().getTitle());

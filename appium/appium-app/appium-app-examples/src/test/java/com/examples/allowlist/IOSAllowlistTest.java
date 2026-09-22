@@ -71,7 +71,7 @@ public class IOSAllowlistTest {
 
     sauceOptions.setCapability("name", name.getMethodName());
     sauceOptions.setCapability("build", "myApp-job-1");
-    List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "allowlist");
+    List<String> tags = Arrays.asList("appium", "junit4", "java", "allowlist");
     sauceOptions.setCapability("tags", tags);
     sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

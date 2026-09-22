@@ -61,7 +61,7 @@ public class DeepLinkIosRDCTest {
 
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "deepLink-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "iOS","Deep Link");
+        List<String> tags = Arrays.asList("appium", "junit4", "java", "deep_link");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

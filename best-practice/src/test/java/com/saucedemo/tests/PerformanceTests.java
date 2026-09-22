@@ -3,6 +3,7 @@ package com.saucedemo.tests;
 import com.saucedemo.pages.LoginPage;
 import com.saucelabs.saucebindings.junit4.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +15,7 @@ public class PerformanceTests extends SauceBaseTest {
         .setExtendedDebugging()
         .setName(testName.getMethodName())
         .setCapturePerformance()
+        .setTags(Arrays.asList("selenium", "junit4", "java", "performance"))
         .build();
   }
 

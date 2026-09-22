@@ -26,6 +26,22 @@ public class BaseTest {
     private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
     private String SAUCE_CAP = "sauce_";
 
+    /**
+     * Common tags identifying this test's driver framework and language.
+     * Subclasses override this to append their own use-case tag, e.g.:
+     * <pre>
+     * &#64;Override
+     * protected List&lt;String&gt; sauceTags() {
+     *     List&lt;String&gt; tags = new ArrayList&lt;&gt;(super.sauceTags());
+     *     tags.add("my_use_case");
+     *     return tags;
+     * }
+     * </pre>
+     */
+    protected List<String> sauceTags() {
+        return Arrays.asList("appium", "testng", "java");
+    }
+
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
 
@@ -73,6 +89,7 @@ public class BaseTest {
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("name", methodName);
+        sauceOptions.setCapability("tags", sauceTags());
 
         if (!isBuildCap) { //handle build cap
             LocalDateTime dateTime = LocalDateTime.now();

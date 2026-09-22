@@ -1,6 +1,7 @@
 package com.saucedemo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.Capabilities;
@@ -13,11 +14,11 @@ public class TestConfigurations {
   static final String BUILD_TIME = String.valueOf(System.currentTimeMillis());
 
   // Best practice would put these constants in a config file and dynamically pull them.
-  public static Capabilities getCapabilities(TestInfo testInfo) {
+  public static Capabilities getCapabilities(TestInfo testInfo, List<String> tags) {
     if (SAUCE_CLOUD.equalsIgnoreCase("vdc")) {
-      return androidAppVDC(testInfo);
+      return androidAppVDC(testInfo, tags);
     } else if (SAUCE_CLOUD.equalsIgnoreCase("rdc")) {
-      return androidAppRDC(testInfo);
+      return androidAppRDC(testInfo, tags);
     } else {
       throw new RuntimeException("Must set sauce.cloud property to vdc or rdc");
     }
@@ -25,7 +26,7 @@ public class TestConfigurations {
 
   // Generate these capabilities with Platform Configurator:
   // https://app.saucelabs.com/platform-configurator
-  private static Capabilities androidAppRDC(TestInfo testInfo) {
+  private static Capabilities androidAppRDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "Android");
     caps.put("appium:automationName", "UiAutomator2");
@@ -38,12 +39,13 @@ public class TestConfigurations {
     sauceOptions.put("appiumVersion", "latest");
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "Android App RDC: " + BUILD_TIME);
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);
   }
 
-  private static Capabilities androidAppVDC(TestInfo testInfo) {
+  private static Capabilities androidAppVDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "Android");
     caps.put("appium:automationName", "UiAutomator2");
@@ -58,6 +60,7 @@ public class TestConfigurations {
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "Android App VDC: " + BUILD_TIME);
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);

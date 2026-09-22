@@ -14,6 +14,8 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestBase {
 
@@ -32,10 +34,18 @@ public class TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) throws MalformedURLException {
-    Capabilities capabilities = TestConfigurations.getCapabilities(testInfo);
+    Capabilities capabilities = TestConfigurations.getCapabilities(testInfo, sauceTags());
 
     this.driver = new AppiumDriver(new URL(SAUCE_URL), capabilities);
     this.driver.manage().timeouts().implicitlyWait(Duration.of(5, ChronoUnit.SECONDS));
+  }
+
+  /**
+   * Sauce Labs tags identifying this test's driver framework, test runner and language.
+   * Subclasses override this to append their own use-case tag.
+   */
+  protected List<String> sauceTags() {
+    return new ArrayList<>(List.of("appium", "junit5", "java"));
   }
 
   public class SauceTestWatcher implements TestWatcher {

@@ -1,3 +1,4 @@
+@appium @cucumber @java @login
 Feature: Login page works
 
   Scenario: Opening the application w/ cucumber

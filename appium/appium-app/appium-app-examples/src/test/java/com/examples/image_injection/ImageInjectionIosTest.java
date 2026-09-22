@@ -74,7 +74,7 @@ public class ImageInjectionIosTest {
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "imageInjection-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "Image Injection");
+        List<String> tags = Arrays.asList("appium", "junit4", "java", "image_injection");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

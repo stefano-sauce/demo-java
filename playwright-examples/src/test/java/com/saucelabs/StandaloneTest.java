@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
@@ -23,12 +24,17 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 
+@Tag("playwright")
+@Tag("junit5")
+@Tag("java")
+@Tag("standalone_session")
 public class StandaloneTest {
 
   static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
@@ -78,6 +84,12 @@ public class StandaloneTest {
     sauceOptions.addProperty("accessKey", SAUCE_ACCESS_KEY);
     sauceOptions.addProperty("devTools", Boolean.TRUE);
     sauceOptions.addProperty("_tptCommanderVersion", "stable");
+    JsonArray tags = new JsonArray();
+    tags.add("playwright");
+    tags.add("junit5");
+    tags.add("java");
+    tags.add("standalone_session");
+    sauceOptions.add("tags", tags);
 
     JsonObject sessionRequest = new JsonObject();
     sessionRequest.addProperty("platformName", "macOS 13");

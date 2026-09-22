@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,6 +14,13 @@ import org.openqa.selenium.TimeoutException;
 /** Desktop Tests. */
 @RunWith(Parameterized.class)
 public class DesktopTests extends BaseTest {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("desktop_cross_browser");
+    return tags;
+  }
 
   @Test()
   public void loginWorks() {

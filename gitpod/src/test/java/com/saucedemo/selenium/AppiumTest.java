@@ -7,9 +7,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -18,6 +20,10 @@ import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.MutableCapabilities;
 
 /** Demo tests with Appium. */
+@Tag("appium")
+@Tag("junit5")
+@Tag("java")
+@Tag("smoke_test")
 public class AppiumTest {
   public AppiumDriver driver;
   public MutableCapabilities options;
@@ -46,7 +52,7 @@ public class AppiumTest {
     options.setCapability(
         "appium:automationName", System.getenv().getOrDefault("AUTOMATION_NAME", "UiAutomator2"));
 
-    ArrayList<String> tags = new ArrayList<>();
+    ArrayList<String> tags = new ArrayList<>(List.of("appium", "junit5", "java", "smoke_test"));
     if (System.getenv("GITPOD_WORKSPACE_ID") != null) {
       tags.add("gitpod");
     }

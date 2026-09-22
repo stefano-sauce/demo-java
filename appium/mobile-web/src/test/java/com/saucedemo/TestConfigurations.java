@@ -1,6 +1,7 @@
 package com.saucedemo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.Capabilities;
@@ -12,27 +13,27 @@ public class TestConfigurations {
   static final String BUILD_TIME = String.valueOf(System.currentTimeMillis());
 
   // Best practice would put these constants in a config file and dynamically pull them.
-  public static Capabilities getCapabilities(TestInfo testInfo) {
+  public static Capabilities getCapabilities(TestInfo testInfo, List<String> tags) {
     if (SAUCE_PLATFORM.equalsIgnoreCase("chrome")) {
       if (SAUCE_CLOUD.equalsIgnoreCase("vdc")) {
-        return androidVDC(testInfo);
+        return androidVDC(testInfo, tags);
       } else if (SAUCE_CLOUD.equalsIgnoreCase("rdc")) {
-        return androidRDC(testInfo);
+        return androidRDC(testInfo, tags);
       }
     }
 
     if (SAUCE_PLATFORM.equalsIgnoreCase("safari")) {
       if (SAUCE_CLOUD.equalsIgnoreCase("vdc")) {
-        return iosVDC(testInfo);
+        return iosVDC(testInfo, tags);
       } else if (SAUCE_CLOUD.equalsIgnoreCase("rdc")) {
-        return iosRDC(testInfo);
+        return iosRDC(testInfo, tags);
       }
     }
 
     throw new RuntimeException("Invalid platform/cloud combination. Browser must be chrome or safari and  cloud must be vdc or rdc.");
   }
 
-  private static Capabilities androidVDC(TestInfo testInfo) {
+  private static Capabilities androidVDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "Android");
     caps.put("browserName", "Chrome");
@@ -45,12 +46,13 @@ public class TestConfigurations {
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "Android Web VDC: " + BUILD_TIME);
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);
   }
 
-  private static Capabilities androidRDC(TestInfo testInfo) {
+  private static Capabilities androidRDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "Android");
     caps.put("browserName", "Chrome");
@@ -63,12 +65,13 @@ public class TestConfigurations {
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "Android Web RDC: " + BUILD_TIME);
     sauceOptions.put("appiumVersion", "latest");
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);
   }
 
-  private static Capabilities iosVDC(TestInfo testInfo) {
+  private static Capabilities iosVDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "iOS");
     caps.put("browserName", "Safari");
@@ -81,12 +84,13 @@ public class TestConfigurations {
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "iOS Web VDC: " + BUILD_TIME);
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);
   }
 
-  private static Capabilities iosRDC(TestInfo testInfo) {
+  private static Capabilities iosRDC(TestInfo testInfo, List<String> tags) {
     Map<String, Object> caps = new HashMap<>();
     caps.put("platformName", "iOS");
     caps.put("browserName", "Safari");
@@ -99,6 +103,7 @@ public class TestConfigurations {
     sauceOptions.put("appiumVersion", "latest");
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "iOS Web RDC: " + BUILD_TIME);
+    sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
     return new MutableCapabilities(caps);

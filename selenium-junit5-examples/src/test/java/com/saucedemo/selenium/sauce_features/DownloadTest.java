@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
@@ -18,7 +19,18 @@ import org.openqa.selenium.HasDownloads;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("download")
 public class DownloadTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("download");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

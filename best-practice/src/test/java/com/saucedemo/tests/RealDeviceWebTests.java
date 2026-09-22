@@ -11,6 +11,7 @@ import io.appium.java_client.ios.IOSDriver;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,13 @@ import org.openqa.selenium.TimeoutException;
 @RunWith(Parameterized.class)
 public class RealDeviceWebTests extends MobileTestsBase {
   @Parameterized.Parameter public String deviceName;
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("mobile_web_real_device");
+    return tags;
+  }
 
   @Parameterized.Parameters()
   public static Collection<Object[]> iosConfigurations() {
@@ -50,6 +58,7 @@ public class RealDeviceWebTests extends MobileTestsBase {
     MutableCapabilities sauceOptions = new MutableCapabilities();
     sauceOptions.setCapability("name", testName.getMethodName());
     sauceOptions.setCapability("build", buildName);
+    sauceOptions.setCapability("tags", sauceTags());
 
     capabilities.setCapability("sauce:options", sauceOptions);
 

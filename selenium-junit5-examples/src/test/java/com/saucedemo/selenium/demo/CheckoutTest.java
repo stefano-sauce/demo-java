@@ -1,10 +1,22 @@
 package com.saucedemo.selenium.demo;
 
 import com.saucedemo.selenium.TestBase;
+import java.util.List;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("checkout")
 public class CheckoutTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("checkout");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

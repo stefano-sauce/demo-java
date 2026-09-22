@@ -1,9 +1,22 @@
 package com.saucedemo.playwright;
 
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("playwright")
+@Tag("junit5")
+@Tag("java")
+@Tag("login")
 public class AuthenticationTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("login");
+    return tags;
+  }
 
   @Test
   public void signInUnsuccessful() {

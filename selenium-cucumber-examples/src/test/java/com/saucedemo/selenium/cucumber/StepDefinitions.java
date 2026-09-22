@@ -12,6 +12,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -36,6 +38,7 @@ public class StepDefinitions {
   public void setUp(Scenario scenario) {
     options.set(new SauceOptions());
     options.get().sauce().setName(scenario.getName());
+    options.get().sauce().setTags(tagsFromScenario(scenario));
 
     if (System.getenv("START_TIME") != null) {
       options.get().sauce().setBuild("Build Time: " + System.getenv("START_TIME"));
@@ -83,6 +86,17 @@ public class StepDefinitions {
   @After
   public void tearDown(Scenario scenario) {
     getSession().stop(!scenario.isFailed());
+  }
+
+  /**
+   * Mirrors this scenario's Gherkin tags (e.g. @selenium @cucumber @java @login) onto the Sauce
+   * Labs job so the framework/language/use-case tags shown on the dashboard always match the
+   * feature file, without duplicating the tag list in code.
+   */
+  private List<String> tagsFromScenario(Scenario scenario) {
+    return scenario.getSourceTagNames().stream()
+        .map(tag -> tag.startsWith("@") ? tag.substring(1) : tag)
+        .collect(Collectors.toList());
   }
 
   @Given("I go to the login page")

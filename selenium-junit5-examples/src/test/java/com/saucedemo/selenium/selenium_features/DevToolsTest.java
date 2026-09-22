@@ -30,6 +30,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
@@ -63,6 +64,10 @@ import org.openqa.selenium.remote.http.Routable;
 import org.openqa.selenium.remote.http.Route;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("devtools")
 public class DevToolsTest extends TestBase {
   private static URL APP_URL;
 
@@ -75,6 +80,13 @@ public class DevToolsTest extends TestBase {
   }
 
   WebDriverWait wait;
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("devtools");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

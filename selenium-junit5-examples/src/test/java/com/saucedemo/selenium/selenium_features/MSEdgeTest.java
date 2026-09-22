@@ -2,16 +2,29 @@ package com.saucedemo.selenium.selenium_features;
 
 import com.saucedemo.selenium.TestBase;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.edge.EdgeOptions;
 
 // Selenium 3 did not support any direct options for Chromium Edge (like excludeSwitches)
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("ms_edge")
 public class MSEdgeTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("ms_edge");
+    return tags;
+  }
 
   @BeforeEach
   public void createSauceOptions(TestInfo testInfo) {

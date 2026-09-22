@@ -3,8 +3,10 @@ package com.saucedemo.selenium.selenium_features;
 import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.OutputType;
@@ -15,7 +17,18 @@ import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.http.ClientConfig;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("remote_webdriver_builder")
 public class RemoteWebDriverBuilderTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("remote_webdriver_builder");
+    return tags;
+  }
 
   /**
    * RemoteWebDriver builder gives you a few great things off the bat: 1. Allows you to easily set
@@ -39,6 +52,7 @@ public class RemoteWebDriverBuilderTest extends TestBase {
     sauceOptions.put("build", System.getenv("BUILD_NAME") + ": " + System.getenv("BUILD_NUMBER"));
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+    sauceOptions.put("tags", sauceTags());
 
     ClientConfig config = ClientConfig.defaultConfig().readTimeout(Duration.ofMinutes(3));
 

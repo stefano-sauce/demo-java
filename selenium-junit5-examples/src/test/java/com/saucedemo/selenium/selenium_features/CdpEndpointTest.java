@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
@@ -15,7 +16,18 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.chromium.HasCdp;
 import org.openqa.selenium.remote.Augmenter;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("cdp_endpoint")
 public class CdpEndpointTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("cdp_endpoint");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

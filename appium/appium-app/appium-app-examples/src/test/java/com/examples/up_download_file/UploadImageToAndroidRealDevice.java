@@ -61,7 +61,7 @@ public class UploadImageToAndroidRealDevice {
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "updateImage-job-1");
-        List<String> tags = Arrays.asList( "Android","Update Image");
+        List<String> tags = Arrays.asList("appium", "junit4", "java", "up_download_file");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

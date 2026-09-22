@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,6 +53,7 @@ public class StepDefinitions {
                 "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/iOS-Real-Device-MyRNDemoApp.1.1.0-146.ipa");
 
         sauceOptions.setCapability("name", scenario.getName());
+        sauceOptions.setCapability("tags", tagsFromScenario(scenario));
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
 //        sauceOptions.setCapability("noReset", "true");
@@ -84,6 +87,17 @@ public class StepDefinitions {
             System.out.println("Release driver");
             driver.quit();
         }
+    }
+
+    /**
+     * Mirrors this scenario's Gherkin tags (e.g. @appium @cucumber @java @login) onto the Sauce
+     * Labs job so the framework/language/use-case tags shown on the dashboard always match the
+     * feature file, without duplicating the tag list in code.
+     */
+    private List<String> tagsFromScenario(Scenario scenario) {
+        return scenario.getSourceTagNames().stream()
+                .map(tag -> tag.startsWith("@") ? tag.substring(1) : tag)
+                .collect(Collectors.toList());
     }
 
     @Given("I open the iOS application")

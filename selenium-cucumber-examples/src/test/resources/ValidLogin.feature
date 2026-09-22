@@ -1,3 +1,4 @@
+@selenium @cucumber @java @login
 Feature: Valid Login
 
   Scenario: Login as valid user

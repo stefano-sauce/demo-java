@@ -1,3 +1,4 @@
+@selenium @cucumber @java @remove_item
 Feature: Remove Item from Cart
 
   Scenario: Removing one item from cart

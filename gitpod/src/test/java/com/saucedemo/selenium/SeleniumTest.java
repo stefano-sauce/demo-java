@@ -4,10 +4,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -17,6 +19,10 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /** Demo tests with Selenium. */
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("smoke_test")
 public class SeleniumTest {
   public RemoteWebDriver driver;
 
@@ -34,7 +40,7 @@ public class SeleniumTest {
     options.setCapability(
         "browserVersion", System.getenv().getOrDefault("BROWSER_VERSION", "latest"));
 
-    ArrayList<String> tags = new ArrayList<>();
+    ArrayList<String> tags = new ArrayList<>(List.of("selenium", "junit5", "java", "smoke_test"));
     if (System.getenv("GITPOD_WORKSPACE_ID") != null) {
       tags.add("gitpod");
     }

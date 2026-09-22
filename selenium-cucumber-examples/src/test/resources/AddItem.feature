@@ -1,3 +1,4 @@
+@selenium @cucumber @java @add_item
 Feature: Add Item To Cart
 
   Scenario: Adding one item to a cart

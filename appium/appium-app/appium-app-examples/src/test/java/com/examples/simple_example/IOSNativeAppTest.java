@@ -73,7 +73,7 @@ public class IOSNativeAppTest {
     capabilities.setCapability("appium:platformVersion", "14");
     sauceOptions.setCapability("name", name.getMethodName());
     sauceOptions.setCapability("build", "myApp-job-1");
-    List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "Demo");
+    List<String> tags = Arrays.asList("appium", "junit4", "java", "simple_example");
     sauceOptions.setCapability("tags", tags);
     sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

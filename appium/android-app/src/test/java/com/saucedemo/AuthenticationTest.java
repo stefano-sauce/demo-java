@@ -1,12 +1,25 @@
 package com.saucedemo;
 
 import io.appium.java_client.AppiumBy;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 
+@Tag("appium")
+@Tag("junit5")
+@Tag("java")
+@Tag("login")
 public class AuthenticationTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("login");
+    return tags;
+  }
 
   @Test
   @DisplayName("Bad Login to Swag Labs")

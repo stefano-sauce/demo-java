@@ -2,7 +2,10 @@ package com.saucedemo.selenium.junit4.demo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.junit.Rule;
@@ -28,6 +31,14 @@ public class TestBase {
 
   protected SessionId id;
 
+  /**
+   * Base Sauce Labs tags shared by all tests extending this class. Subclasses override this to
+   * append their own use-case tag.
+   */
+  protected List<String> sauceTags() {
+    return new ArrayList<>(Arrays.asList("selenium", "junit4", "java"));
+  }
+
   public void startChromeSession() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
@@ -51,6 +62,7 @@ public class TestBase {
     sauceOptions.put("name", testName.getMethodName());
     sauceOptions.put("screenResolution", "1440x900");
     sauceOptions.put("seleniumVersion", "4.22.0");
+    sauceOptions.put("tags", sauceTags());
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
     ((AbstractDriverOptions<?>) options).setPlatformName("Windows 11");
     URL url;

@@ -1,11 +1,24 @@
 package com.saucedemo;
 
 import io.appium.java_client.AppiumBy;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("appium")
+@Tag("junit5")
+@Tag("java")
+@Tag("cart")
 public class CartTest extends TestBase {
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("cart");
+    return tags;
+  }
+
   @Test
   @DisplayName("Add product to cart")
   public void addToCart() {

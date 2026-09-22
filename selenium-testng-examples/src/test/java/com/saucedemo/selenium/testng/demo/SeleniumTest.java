@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 /** Example of running a TestNG test without using Sauce Bindings. */
 public class SeleniumTest {
@@ -25,6 +26,7 @@ public class SeleniumTest {
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.setCapability("name", method.getName());
     sauceOptions.setCapability("browserVersion", "latest");
+    sauceOptions.setCapability("tags", Arrays.asList("selenium", "testng", "java", "login"));
 
     ChromeOptions options = new ChromeOptions();
     options.setCapability("sauce:options", sauceOptions);
@@ -33,7 +35,7 @@ public class SeleniumTest {
     driver = new RemoteWebDriver(url, options);
   }
 
-  @Test
+  @Test(groups = {"selenium", "testng", "java", "login"})
   public void correctTitle() {
     driver.navigate().to("https://www.saucedemo.com");
     Assert.assertEquals("Swag Labs", driver.getTitle());

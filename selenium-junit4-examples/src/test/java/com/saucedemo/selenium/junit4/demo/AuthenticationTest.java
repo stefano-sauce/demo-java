@@ -1,5 +1,6 @@
 package com.saucedemo.selenium.junit4.demo;
 
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class AuthenticationTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("login");
+    return tags;
+  }
 
   @Before
   public void setup() {

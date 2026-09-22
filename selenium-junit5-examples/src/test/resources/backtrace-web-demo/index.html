@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Backtrace Web Error &amp; Crash Reporting Demo</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 40rem; }
+  button { display: block; margin: 0.5rem 0; padding: 0.5rem 1rem; font-size: 1rem; }
+  #log { border: 1px solid #ccc; padding: 0.5rem 1rem; min-height: 3rem; font-family: monospace; font-size: 0.85rem; }
+  #log li { word-break: break-all; }
+</style>
+</head>
+<body>
+  <h1>Backtrace Web Error &amp; Crash Reporting Demo</h1>
+  <p>Status: <span id="status" data-status="loading">loading…</span></p>
+
+  <button id="btn-uncaught" data-test="throw-uncaught">Throw Uncaught Error</button>
+  <button id="btn-rejection" data-test="trigger-rejection">Trigger Unhandled Promise Rejection</button>
+  <button id="btn-manual" data-test="send-manual">Send Manual Report</button>
+
+  <h2>Log</h2>
+  <ul id="log" data-test="log"></ul>
+
+  <script type="module">
+    // @backtrace/browser is the actively maintained SDK for browser JS error/crash
+    // reporting (the older "backtrace-js" package is archived - do not use it).
+    import { BacktraceClient } from 'https://cdn.jsdelivr.net/npm/@backtrace/browser@0.6.2/lib/bundle.mjs';
+
+    const statusEl = document.getElementById('status');
+    const logEl = document.getElementById('log');
+
+    function appendLog(message) {
+      const li = document.createElement('li');
+      li.dataset.test = 'log-entry';
+      li.textContent = `[${new Date().toISOString()}] ${message}`;
+      logEl.appendChild(li);
+    }
+
+    function setStatus(value, text) {
+      statusEl.dataset.status = value;
+      statusEl.textContent = text;
+    }
+
+    let client;
+    try {
+      // Dedicated web submission token (separate from the Android app's token).
+      client = BacktraceClient.initialize({
+        name: 'sauce-labs-web-demo',
+        version: '1.0.0',
+        url: 'https://submit.backtrace.io/stefback/057525adac6565335745635c0a9aeeb6d023401d315a7426ba688513f88ec66b/json',
+      });
+
+      // Fires after every report (automatic or manual) attempts submission -
+      // this is how the page (and the Selenium tests) know a report round-tripped
+      // through the SDK, independent of Backtrace's own dashboard.
+      client.on('after-send', (report, data, attachments, result) => {
+        appendLog(`after-send: ${result && result.status ? result.status : 'submitted'}`);
+      });
+
+      setStatus('ready', 'ready');
+      appendLog('Backtrace client initialized');
+    } catch (err) {
+      setStatus('init-failed', 'init failed');
+      appendLog(`Client init failed: ${err.message}`);
+    }
+
+    // BacktraceClient.initialize() enables automatic capture of uncaught errors
+    // and unhandled promise rejections by default - no extra wiring needed for
+    // these two buttons.
+    document.getElementById('btn-uncaught').addEventListener('click', () => {
+      appendLog('throwing uncaught error');
+      throw new Error('Demo: uncaught error triggered from Sauce Labs web test');
+    });
+
+    document.getElementById('btn-rejection').addEventListener('click', () => {
+      appendLog('triggering unhandled promise rejection');
+      Promise.reject(new Error('Demo: unhandled promise rejection triggered from Sauce Labs web test'));
+    });
+
+    document.getElementById('btn-manual').addEventListener('click', () => {
+      appendLog('sending manual report');
+      client.send(new Error('Demo: manual report from Sauce Labs web test'))
+        .then((result) => appendLog(`manual report result: ${result && result.status ? result.status : 'submitted'}`))
+        .catch((err) => appendLog(`manual report failed: ${err.message}`));
+    });
+  </script>
+</body>
+</html>

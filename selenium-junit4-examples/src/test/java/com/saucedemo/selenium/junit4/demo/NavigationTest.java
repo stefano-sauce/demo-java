@@ -1,11 +1,19 @@
 package com.saucedemo.selenium.junit4.demo;
 
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 public class NavigationTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("navigation");
+    return tags;
+  }
 
   @Before
   public void setup() {

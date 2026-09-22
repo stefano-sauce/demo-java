@@ -6,6 +6,7 @@ import com.saucelabs.bindings.SaucePlaywrightSession;
 import com.saucelabs.saucebindings.CITools;
 import com.saucelabs.saucebindings.DataCenter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.DisplayName;
@@ -22,13 +23,19 @@ public class SaucePlaywrightExtension
   private final String build;
   protected Map<String, Object> capabilities;
   protected DataCenter dataCenter;
+  protected List<String> tags;
 
   public SaucePlaywrightExtension() {
-    this(DataCenter.US_WEST);
+    this(DataCenter.US_WEST, List.of("playwright", "junit5", "java"));
   }
 
-  private SaucePlaywrightExtension(DataCenter dataCenter) {
+  public SaucePlaywrightExtension(List<String> tags) {
+    this(DataCenter.US_WEST, tags);
+  }
+
+  private SaucePlaywrightExtension(DataCenter dataCenter, List<String> tags) {
     this.dataCenter = dataCenter;
+    this.tags = tags;
     this.build = CITools.getBuildName() + ": " + CITools.getBuildNumber();
   }
 
@@ -55,6 +62,7 @@ public class SaucePlaywrightExtension
     sauceOptions.put("_tptCommanderVersion", "stable");
     sauceOptions.put("name", getTestName(context));
     sauceOptions.put("build", CITools.getBuildName() + ": " + CITools.getBuildNumber());
+    sauceOptions.put("tags", tags);
 
     Map<String, Object> sessionRequest = new HashMap<>();
     sessionRequest.put("platformName", "macOS 13");

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.*;
@@ -14,8 +16,19 @@ import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.print.PrintOptions;
 import org.openqa.selenium.remote.Augmenter;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("view_page")
 public class ViewPageFirefoxTest extends TestBase {
   public static Path directory;
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("view_page");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) throws IOException {

@@ -78,7 +78,7 @@ public class AndroidFindByImageTest {
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("appiumVersion", "latest");
         sauceOptions.setCapability("build", "myApp-job-findImage-1");
-        List<String> tags = Arrays.asList("sauceDemo", "Android", "FindByImage");
+        List<String> tags = Arrays.asList("appium", "junit4", "java", "find_by_image");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));

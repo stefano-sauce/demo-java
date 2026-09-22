@@ -1,11 +1,23 @@
 package com.saucedemo.selenium.demo;
 
 import com.saucedemo.selenium.TestBase;
+import java.util.List;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("login")
 public class AuthenticationTest extends TestBase {
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("login");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {

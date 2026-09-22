@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +19,14 @@ public class DemoSimpleTest extends BaseTest {
     By sortButtonLocator = By.id("sort button");
     By sortModalLocator = By.id("active option");
 
-    @Test
+    @Override
+    protected List<String> sauceTags() {
+        List<String> tags = new ArrayList<>(super.sauceTags());
+        tags.add("sort_modal");
+        return tags;
+    }
+
+    @Test(groups = {"appium", "testng", "java", "sort_modal"})
     public void verifyPromptSortModal() throws MalformedURLException {
         //Wait for the application to start and load the initial screen (products screen)
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));

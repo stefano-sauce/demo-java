@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /** Example Tests for running with Sauce Bindings directly without test runner jar. */
 public class SauceBindingsTest {
@@ -18,12 +19,16 @@ public class SauceBindingsTest {
 
   @BeforeMethod
   public void setup(Method method) {
-    SauceOptions options = SauceOptions.chrome().setName(method.getName()).build();
+    SauceOptions options =
+        SauceOptions.chrome()
+            .setName(method.getName())
+            .setTags(Arrays.asList("selenium", "testng", "java", "login"))
+            .build();
     session = new SauceSession(options);
     driver = session.start();
   }
 
-  @Test
+  @Test(groups = {"selenium", "testng", "java", "login"})
   public void correctTitle() {
     driver.navigate().to("https://www.saucedemo.com");
     Assert.assertEquals("Swag Labs", driver.getTitle());

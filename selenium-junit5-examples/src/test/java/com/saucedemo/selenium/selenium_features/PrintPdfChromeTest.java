@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.OutputType;
@@ -15,8 +16,19 @@ import org.openqa.selenium.Pdf;
 import org.openqa.selenium.PrintsPage;
 import org.openqa.selenium.print.PrintOptions;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("print_pdf")
 public class PrintPdfChromeTest extends TestBase {
   public static Path directory;
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("print_pdf");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) throws IOException {

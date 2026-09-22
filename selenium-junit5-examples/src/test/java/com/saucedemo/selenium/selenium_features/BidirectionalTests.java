@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
@@ -35,9 +37,20 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Tag("selenium")
+@Tag("junit5")
+@Tag("java")
+@Tag("bidirectional")
 public class BidirectionalTests extends TestBase {
 
   WebDriverWait wait;
+
+  @Override
+  protected List<String> sauceTags() {
+    List<String> tags = super.sauceTags();
+    tags.add("bidirectional");
+    return tags;
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
