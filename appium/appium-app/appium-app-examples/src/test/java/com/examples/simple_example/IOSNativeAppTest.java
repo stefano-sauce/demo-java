@@ -64,7 +64,8 @@ public class IOSNativeAppTest {
       capabilities.setCapability("appium:deviceName", "iPhone.*");
       appName = "SauceLabs-Demo-App.ipa";
       sauceOptions.setCapability("resigningEnabled", true);
-      sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+      sauceOptions.setCapability("networkCapture", true);
+      sauceOptions.setCapability("vitals", true);
     } else {
       capabilities.setCapability("appium:deviceName", "iPhone 11 Simulator");
       appName = "SauceLabs-Demo-App.Simulator.zip";

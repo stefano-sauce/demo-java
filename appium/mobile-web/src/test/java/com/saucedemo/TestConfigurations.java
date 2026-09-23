@@ -65,6 +65,9 @@ public class TestConfigurations {
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "Android Web RDC: " + BUILD_TIME);
     sauceOptions.put("appiumVersion", "latest");
+    sauceOptions.put("resigningEnabled", true);
+    sauceOptions.put("networkCapture", true);
+    sauceOptions.put("vitals", true);
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
@@ -103,6 +106,9 @@ public class TestConfigurations {
     sauceOptions.put("appiumVersion", "latest");
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "iOS Web RDC: " + BUILD_TIME);
+    sauceOptions.put("resigningEnabled", true);
+    sauceOptions.put("networkCapture", true);
+    sauceOptions.put("vitals", true);
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 

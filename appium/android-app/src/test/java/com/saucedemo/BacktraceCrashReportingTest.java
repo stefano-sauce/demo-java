@@ -101,6 +101,8 @@ public class BacktraceCrashReportingTest extends TestBase {
     // class-level javadoc). Fixed by waiting for confirmed app death + margin below.
     sauceOptions.put("resigningEnabled", true);
     sauceOptions.put("crashReporting", true);
+    sauceOptions.put("networkCapture", true);
+    sauceOptions.put("vitals", true);
     sauceOptions.put("tags", sauceTags());
 
     caps.put("sauce:options", sauceOptions);

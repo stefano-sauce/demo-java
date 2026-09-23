@@ -68,6 +68,9 @@ public class DownloadImageFromAndroidRealDevice {
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("appiumVersion", "stable");
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
 
         capabilities.setCapability("sauce:options", sauceOptions);
 

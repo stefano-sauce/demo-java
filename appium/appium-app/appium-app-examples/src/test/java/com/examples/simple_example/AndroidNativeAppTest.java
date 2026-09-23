@@ -63,7 +63,8 @@ public class AndroidNativeAppTest {
       // Allocate any available samsung device with Android version 12
       capabilities.setCapability("appium:deviceName", "Samsung.*");
       sauceOptions.setCapability("resigningEnabled", true);
-      sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+      sauceOptions.setCapability("networkCapture", true);
+      sauceOptions.setCapability("vitals", true);
       sauceOptions.setCapability("appiumVersion", "latest");
     } else {
       capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");

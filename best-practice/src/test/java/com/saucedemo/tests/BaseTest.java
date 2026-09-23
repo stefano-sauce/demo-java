@@ -104,6 +104,11 @@ public class BaseTest {
         caps.setCapability("browserName", browserDeviceName);
         caps.setCapability("browserVersion", browserPlatformVersion);
         caps.setCapability("platformName", platformName);
+        // Network capture (HAR + console logs) is only supported on desktop Chrome/Firefox.
+        if (browserDeviceName.equalsIgnoreCase("chrome")
+            || browserDeviceName.equalsIgnoreCase("firefox")) {
+          sauceOptions.setCapability("extendedDebugging", true);
+        }
         break;
       case "android":
         caps.setCapability("platformName", "android");

@@ -43,8 +43,27 @@ public class TestBase {
     startChromeSession(testInfo, new ArrayList<>());
   }
 
+  /**
+   * Starts a Chrome session with additional sauce:options merged on top of the defaults, e.g.
+   * {@code Map.of("extendedDebugging", true, "capturePerformance", true)} for performance mode.
+   */
+  public void startChromeSession(TestInfo testInfo, Map<String, Object> extraSauceOptions) {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
+    sauceOptions.putAll(extraSauceOptions);
+    startSession(options, sauceOptions);
+  }
+
   public void startFirefoxSession(TestInfo testInfo) {
     startSession(testInfo, new FirefoxOptions());
+  }
+
+  /** Starts a Firefox session with additional sauce:options merged on top of the defaults. */
+  public void startFirefoxSession(TestInfo testInfo, Map<String, Object> extraSauceOptions) {
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
+    sauceOptions.putAll(extraSauceOptions);
+    startSession(new FirefoxOptions(), sauceOptions);
   }
 
   public void startSession(TestInfo testInfo, Capabilities options) {

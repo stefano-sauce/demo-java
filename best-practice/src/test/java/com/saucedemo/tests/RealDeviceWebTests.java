@@ -58,6 +58,9 @@ public class RealDeviceWebTests extends MobileTestsBase {
     MutableCapabilities sauceOptions = new MutableCapabilities();
     sauceOptions.setCapability("name", testName.getMethodName());
     sauceOptions.setCapability("build", buildName);
+    sauceOptions.setCapability("resigningEnabled", true);
+    sauceOptions.setCapability("networkCapture", true);
+    sauceOptions.setCapability("vitals", true);
     sauceOptions.setCapability("tags", sauceTags());
 
     capabilities.setCapability("sauce:options", sauceOptions);

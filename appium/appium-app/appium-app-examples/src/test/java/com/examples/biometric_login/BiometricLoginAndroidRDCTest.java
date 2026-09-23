@@ -77,6 +77,8 @@ public class BiometricLoginAndroidRDCTest {
         sauceOptions.setCapability("phoneOnly", true);
         // Enable touchID
         sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
         // NOTE: this is needed to tell Sauce Labs that the biometrics need to be mocked
         sauceOptions.setCapability("allowTouchIdEnroll", true);
 

@@ -2,6 +2,7 @@ package com.saucedemo.selenium.demo;
 
 import com.saucedemo.selenium.TestBase;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class AuthenticationTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    startFirefoxSession(testInfo);
+    startFirefoxSession(testInfo, Map.of("extendedDebugging", true));
   }
 
   @Test

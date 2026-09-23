@@ -83,7 +83,8 @@ public class ImageInjectionAndroidTest {
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
 
         sauceOptions.setCapability("resigningEnabled", true);
-        sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
         sauceOptions.setCapability("sauceLabsImageInjectionEnabled", true);
 
         capabilities.setCapability("sauce:options", sauceOptions);

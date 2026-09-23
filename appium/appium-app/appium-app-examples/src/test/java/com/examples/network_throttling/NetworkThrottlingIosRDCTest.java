@@ -50,6 +50,9 @@ public class NetworkThrottlingIosRDCTest {
         // Sauce capabilities
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
         sauceOptions.setCapability("tags", Arrays.asList("appium", "junit4", "java", "network_throttling"));
 
         String appName = "SauceLabs-Demo-App.ipa";

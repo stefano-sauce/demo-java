@@ -93,6 +93,8 @@ public class BiometricLoginIosRDCTest {
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         // Enable touchID
         sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
         sauceOptions.setCapability("allowTouchIdEnroll", true);
 
         capabilities.setCapability("sauce:options", sauceOptions);

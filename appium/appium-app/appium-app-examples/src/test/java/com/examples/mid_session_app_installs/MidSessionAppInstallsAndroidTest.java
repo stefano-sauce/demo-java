@@ -58,7 +58,8 @@ public class MidSessionAppInstallsAndroidTest {
     capabilities.setCapability("appium:automationName", "UiAutomator2");
     capabilities.setCapability("appium:deviceName", "Samsung.*");
     sauceOptions.setCapability("resigningEnabled", true);
-    sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+    sauceOptions.setCapability("networkCapture", true);
+    sauceOptions.setCapability("vitals", true);
     capabilities.setCapability("appium:platformVersion", "13");
     String appName = "mda-1.0.14-17.apk";
     capabilities.setCapability("appium:app", "storage:filename=" + appName);

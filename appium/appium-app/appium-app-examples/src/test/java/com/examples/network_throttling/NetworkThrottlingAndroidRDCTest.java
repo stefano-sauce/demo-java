@@ -53,6 +53,9 @@ public class NetworkThrottlingAndroidRDCTest {
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("appiumVersion", "latest");
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
+        sauceOptions.setCapability("vitals", true);
         sauceOptions.setCapability("tags", Arrays.asList("appium", "junit4", "java", "network_throttling"));
 
         String appName = "SauceLabs-Demo-App.apk";

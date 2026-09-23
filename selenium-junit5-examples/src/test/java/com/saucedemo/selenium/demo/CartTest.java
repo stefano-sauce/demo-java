@@ -2,6 +2,7 @@ package com.saucedemo.selenium.demo;
 
 import com.saucedemo.selenium.TestBase;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
@@ -9,18 +10,22 @@ import org.openqa.selenium.By;
 @Tag("junit5")
 @Tag("java")
 @Tag("cart")
+@Tag("performance")
 public class CartTest extends TestBase {
 
   @Override
   protected List<String> sauceTags() {
     List<String> tags = super.sauceTags();
     tags.add("cart");
+    tags.add("performance");
     return tags;
   }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    startChromeSession(testInfo);
+    // Performance mode: capturePerformance requires extendedDebugging, and both are
+    // Lighthouse-based, desktop-Chrome-only features.
+    startChromeSession(testInfo, Map.of("extendedDebugging", true, "capturePerformance", true));
   }
 
   @Test
