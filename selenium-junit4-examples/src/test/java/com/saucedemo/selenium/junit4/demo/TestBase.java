@@ -67,7 +67,7 @@ public class TestBase {
     ((AbstractDriverOptions<?>) options).setPlatformName("Windows 11");
     URL url;
     try {
-      url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
+      url = new URL("https://ondemand.eu-central-1.saucelabs.com/wd/hub");
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }

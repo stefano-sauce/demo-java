@@ -13,7 +13,7 @@ public class Endpoints {
   public static URL getEmuSimHub() throws MalformedURLException {
     String user = System.getenv("SAUCE_USERNAME");
     String key = System.getenv("SAUCE_ACCESS_KEY");
-    return new URL("https://" + user + ":" + key + "@ondemand.us-west-1.saucelabs.com/wd/hub");
+    return new URL("https://" + user + ":" + key + "@ondemand.eu-central-1.saucelabs.com/wd/hub");
   }
 
   public static URL getScreenerHub() throws MalformedURLException {
@@ -28,6 +28,6 @@ public class Endpoints {
   public static URL getRealDevicesHub() throws MalformedURLException {
     String user = System.getenv("SAUCE_USERNAME");
     String key = System.getenv("SAUCE_ACCESS_KEY");
-    return new URL("https://" + user + ":" + key + "@ondemand.us-west-1.saucelabs.com/wd/hub");
+    return new URL("https://" + user + ":" + key + "@ondemand.eu-central-1.saucelabs.com/wd/hub");
   }
 }

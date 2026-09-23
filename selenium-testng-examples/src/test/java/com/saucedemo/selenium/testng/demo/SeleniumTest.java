@@ -30,7 +30,7 @@ public class SeleniumTest {
 
     ChromeOptions options = new ChromeOptions();
     options.setCapability("sauce:options", sauceOptions);
-    URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
+    URL url = new URL("https://ondemand.eu-central-1.saucelabs.com/wd/hub");
 
     driver = new RemoteWebDriver(url, options);
   }

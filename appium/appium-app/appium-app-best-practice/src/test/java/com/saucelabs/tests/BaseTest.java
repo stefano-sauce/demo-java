@@ -23,7 +23,7 @@ public class BaseTest {
     protected static ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
 
     private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
-    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+    private String SAUCE_US_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
     private String SAUCE_CAP = "sauce_";
 
     /**

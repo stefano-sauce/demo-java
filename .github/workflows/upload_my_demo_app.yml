@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App Android
         uses: wei/curl@v1.1.1
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App iOS zip
         uses: wei/curl@v1.1.1
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App iOS ipa
         uses: wei/curl@v1.1.1
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App Android RN
         uses: wei/curl@v1.1.1
@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App iOS zip RN
         uses: wei/curl@v1.1.1
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        datacenter: [ eu-central-1, us-west-1 ]
+        datacenter: [ eu-central-1 ]
     steps:
       - name: Download My Demo App iOS ipa RN
         uses: wei/curl@v1.1.1
