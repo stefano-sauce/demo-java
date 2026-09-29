@@ -23,18 +23,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Demonstrates Backtrace error/crash reporting for web, on top of Sauce Labs, the same way
- * BacktraceCrashActivity does it for the Android app (see mobile My Demo App Android).
+ * Demonstrates Sauce Labs Error Reporting (https://saucelabs.com/products/error-reporting, a
+ * rebrand of Backtrace) for web, on top of Sauce Labs, the same way BacktraceCrashActivity does
+ * it for the Android app (see mobile My Demo App Android).
  *
- * <p>The demo page ({@code backtrace-web-demo/index.html}) loads the Backtrace browser SDK
- * (@backtrace/browser) and wires up automatic capture of uncaught errors and unhandled promise
+ * <p>The demo page ({@code error-reporting-web-demo/index.html}) loads the Backtrace browser SDK
+ * (@backtrace/browser - the underlying technical package name, unaffected by the Sauce Labs
+ * product rebrand) and wires up automatic capture of uncaught errors and unhandled promise
  * rejections, plus a manual report button.
  *
  * <p>Because the page only exists on this machine (it's a test resource, not a public site), it's
  * served by a tiny embedded HTTP server and exposed to the Sauce Labs cloud browser through a
- * Sauce Connect tunnel - see the "Backtrace Web Crash/Error Reporting Demo" section in
+ * Sauce Connect tunnel - see the "Error Reporting Web Crash Demo" section in
  * ~/scripts/run_sauce_tests.sh, which starts the tunnel (name: SAUCE_TUNNEL_NAME, defaulting to
- * "backtrace-web-demo") before running this test class.
+ * "error-reporting-web-demo") before running this test class.
  *
  * <p>The hostname "127.0.0.1.nip.io" (a public DNS wildcard that resolves to 127.0.0.1) is used
  * instead of "localhost" - browsers special-case literal "localhost" and won't route it through
@@ -46,10 +48,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @Tag("junit5")
 @Tag("java")
 @Tag("crash_reporting")
-public class BacktraceWebCrashReportingTest extends TestBase {
+public class ErrorReportingWebCrashTest extends TestBase {
 
   private static final String TUNNEL_NAME =
-      System.getenv().getOrDefault("SAUCE_TUNNEL_NAME", "backtrace-web-demo");
+      System.getenv().getOrDefault("SAUCE_TUNNEL_NAME", "error-reporting-web-demo");
   private static final String HOSTNAME = "127.0.0.1.nip.io";
   private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(20);
 
@@ -71,9 +73,9 @@ public class BacktraceWebCrashReportingTest extends TestBase {
         exchange -> {
           byte[] body;
           try (InputStream resource =
-              BacktraceWebCrashReportingTest.class
+              ErrorReportingWebCrashTest.class
                   .getClassLoader()
-                  .getResourceAsStream("backtrace-web-demo/index.html")) {
+                  .getResourceAsStream("error-reporting-web-demo/index.html")) {
             if (resource == null) {
               exchange.sendResponseHeaders(404, -1);
               return;
@@ -89,7 +91,7 @@ public class BacktraceWebCrashReportingTest extends TestBase {
     server.start();
 
     baseUrl = String.format("http://%s:%d/", HOSTNAME, server.getAddress().getPort());
-    System.out.println("Backtrace web demo page served at: " + baseUrl);
+    System.out.println("Error Reporting web demo page served at: " + baseUrl);
   }
 
   @AfterAll
@@ -132,9 +134,9 @@ public class BacktraceWebCrashReportingTest extends TestBase {
                     .anyMatch(li -> li.getText().contains(expectedSubstring)));
   }
 
-  @DisplayName("Uncaught JS error is auto-captured and reported to Backtrace")
+  @DisplayName("Uncaught JS error is auto-captured and reported to Error Reporting")
   @Test
-  public void uncaughtErrorIsReportedToBacktrace() {
+  public void uncaughtErrorIsReportedToErrorReporting() {
     waitForClientReady();
 
     driver.findElement(By.id("btn-uncaught")).click();
@@ -146,9 +148,9 @@ public class BacktraceWebCrashReportingTest extends TestBase {
         "Expected the page to log that it threw the uncaught error");
   }
 
-  @DisplayName("Unhandled promise rejection is auto-captured and reported to Backtrace")
+  @DisplayName("Unhandled promise rejection is auto-captured and reported to Error Reporting")
   @Test
-  public void unhandledRejectionIsReportedToBacktrace() {
+  public void unhandledRejectionIsReportedToErrorReporting() {
     waitForClientReady();
 
     driver.findElement(By.id("btn-rejection")).click();
@@ -160,9 +162,9 @@ public class BacktraceWebCrashReportingTest extends TestBase {
         "Expected the page to log that it triggered the unhandled rejection");
   }
 
-  @DisplayName("Manual error report is sent to Backtrace on demand")
+  @DisplayName("Manual error report is sent to Error Reporting on demand")
   @Test
-  public void manualReportIsSentToBacktrace() {
+  public void manualReportIsSentToErrorReporting() {
     waitForClientReady();
 
     driver.findElement(By.id("btn-manual")).click();

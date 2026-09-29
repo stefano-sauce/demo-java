@@ -38,14 +38,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * java.lang.Integer.intValue()' on a null object reference} at
  * ProductCatalogFragment.java:156, and kills the app process.
  *
- * <p>Backtrace's Android SDK (wired up in MyApplication.java, see
+ * <p>The app's Error Reporting SDK (Sauce Labs' rebrand of Backtrace - see
+ * https://saucelabs.com/products/error-reporting - wired up in MyApplication.java, see
  * https://github.com/saucelabs/my-demo-app-android) installs a process-wide default
  * uncaught-exception handler, so it intercepts and reports this crash the same way it would any
  * other uncaught exception in the app - not just the ones on the "Crash app (debug)" screen.
  *
  * <p>Unlike the web demo, there's no page-side log to assert against here, so this test only
  * drives the UI up to triggering the crash and confirms the app process actually died as a
- * result; it doesn't (and can't) assert that Backtrace received the report.
+ * result; it doesn't (and can't) assert that Error Reporting received the report.
  *
  * <p><b>Timing fix (see investigation doc, 2026-08-28):</b> RDC's own crash-log capture
  * (crash.json / crash_log_url via the crashReporting capability below) needs ~600-700ms after the
@@ -58,15 +59,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * cause was a red herring: that line appears in successful manual runs too - BACKTRACE and
  * CRASH_COLLECTION are separate features, and CRASH_COLLECTION is the one actually enabled here.)
  *
- * <p>Uses mydemoapp_sauce_error_reporting.apk from Sauce Storage - the build with Backtrace
- * enabled - rather than TestConfigurations.ANDROID_APP_URL, which points at a stock build with no
- * Backtrace token.
+ * <p>Uses mydemoapp_sauce_error_reporting.apk from Sauce Storage - the build with Error
+ * Reporting enabled - rather than TestConfigurations.ANDROID_APP_URL, which points at a stock
+ * build with no Error Reporting token.
  */
 @Tag("appium")
 @Tag("junit5")
 @Tag("java")
 @Tag("crash_reporting")
-public class BacktraceCrashReportingTest extends TestBase {
+public class ErrorReportingCrashTest extends TestBase {
 
   private static final String BUILD_TIME = String.valueOf(System.currentTimeMillis());
 
@@ -90,10 +91,10 @@ public class BacktraceCrashReportingTest extends TestBase {
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("appiumVersion", "latest");
     sauceOptions.put("name", testInfo.getDisplayName());
-    sauceOptions.put("build", "Backtrace Crash Reporting RDC: " + BUILD_TIME);
+    sauceOptions.put("build", "Error Reporting Crash Test RDC: " + BUILD_TIME);
 
     // Sauce's own RDC crash-log capture (crash.json / crash_log_url) - separate from the app's
-    // embedded Backtrace SDK. Matches the documented example at
+    // embedded Error Reporting SDK. Matches the documented example at
     // https://docs.saucelabs.com/dev/test-configuration-options/#crashreporting exactly. This
     // capability propagates correctly and CRASH_COLLECTION is confirmed enabled on-device - the
     // reason crash.json wasn't showing up wasn't this capability at all, it was driver.quit()
@@ -112,8 +113,8 @@ public class BacktraceCrashReportingTest extends TestBase {
   }
 
   @Test
-  @DisplayName("Tapping the top-right catalog product crashes the app and is reported to Backtrace")
-  public void topRightProductTapCrashIsReportedToBacktrace() {
+  @DisplayName("Tapping the top-right catalog product crashes the app and is reported to Error Reporting")
+  public void topRightProductTapCrashIsReportedToErrorReporting() {
     // The catalog is the app's landing screen - no navigation needed. A UiSelector.fromParent()
     // sibling-text lookup was tried first but silently matched the wrong (non-buggy) tile - it
     // clicked cleanly with no crash on a live run. Indexing into all "productIV" tiles instead:

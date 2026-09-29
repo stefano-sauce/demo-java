@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Backtrace Web Error &amp; Crash Reporting Demo</title>
+<title>Error Reporting Web Demo</title>
 <style>
   body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 40rem; }
   button { display: block; margin: 0.5rem 0; padding: 0.5rem 1rem; font-size: 1rem; }
@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-  <h1>Backtrace Web Error &amp; Crash Reporting Demo</h1>
+  <h1>Error Reporting Web Demo</h1>
   <p>Status: <span id="status" data-status="loading">loading…</span></p>
 
   <button id="btn-uncaught" data-test="throw-uncaught">Throw Uncaught Error</button>
@@ -52,13 +52,13 @@
 
       // Fires after every report (automatic or manual) attempts submission -
       // this is how the page (and the Selenium tests) know a report round-tripped
-      // through the SDK, independent of Backtrace's own dashboard.
+      // through the SDK, independent of the Error Reporting dashboard.
       client.on('after-send', (report, data, attachments, result) => {
         appendLog(`after-send: ${result && result.status ? result.status : 'submitted'}`);
       });
 
       setStatus('ready', 'ready');
-      appendLog('Backtrace client initialized');
+      appendLog('Error Reporting client initialized');
     } catch (err) {
       setStatus('init-failed', 'init failed');
       appendLog(`Client init failed: ${err.message}`);
