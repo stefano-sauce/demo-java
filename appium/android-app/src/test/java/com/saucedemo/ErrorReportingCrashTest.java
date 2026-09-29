@@ -11,6 +11,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -71,6 +72,16 @@ public class ErrorReportingCrashTest extends TestBase {
 
   private static final String BUILD_TIME = String.valueOf(System.currentTimeMillis());
 
+  // Real-device name patterns known to carry the app's min/target SDK range (21-31). Picking
+  // one at random per run spreads the daily crash demo across devices instead of hammering
+  // the same one every time.
+  private static final List<String> DEVICES =
+      List.of(
+          "Samsung Galaxy S20",
+          "Samsung Galaxy S21.*",
+          "Samsung Galaxy S22.*",
+          "Google Pixel.*");
+
   @Override
   protected List<String> sauceTags() {
     List<String> tags = super.sauceTags();
@@ -84,7 +95,9 @@ public class ErrorReportingCrashTest extends TestBase {
     caps.put("platformName", "Android");
     caps.put("appium:automationName", "UiAutomator2");
     caps.put("appium:app", "storage:filename=mydemoapp_sauce_error_reporting.apk");
-    caps.put("appium:deviceName", "Samsung Galaxy S20");
+    String device = DEVICES.get(ThreadLocalRandom.current().nextInt(DEVICES.size()));
+    caps.put("appium:deviceName", device);
+    System.out.println("Error Reporting crash demo running on device: " + device);
 
     Map<String, Object> sauceOptions = new HashMap<>();
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));

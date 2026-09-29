@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +20,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -54,6 +57,10 @@ public class ErrorReportingWebCrashTest extends TestBase {
       System.getenv().getOrDefault("SAUCE_TUNNEL_NAME", "error-reporting-web-demo");
   private static final String HOSTNAME = "127.0.0.1.nip.io";
   private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(20);
+
+  // extendedDebugging (needed below) only documents support for Chrome and Firefox, so the
+  // rotation is limited to those two rather than the full browser matrix.
+  private static final List<String> BROWSERS = List.of("chrome", "firefox");
 
   private static HttpServer server;
   private static String baseUrl;
@@ -103,7 +110,11 @@ public class ErrorReportingWebCrashTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    ChromeOptions options = new ChromeOptions();
+    String browser = BROWSERS.get(ThreadLocalRandom.current().nextInt(BROWSERS.size()));
+    MutableCapabilities options =
+        "firefox".equals(browser) ? new FirefoxOptions() : new ChromeOptions();
+    System.out.println("Error Reporting web demo running on: " + browser);
+
     Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
     sauceOptions.put("tunnelName", TUNNEL_NAME);
 
