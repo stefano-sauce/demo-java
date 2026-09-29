@@ -26,11 +26,11 @@ public class SaucePlaywrightExtension
   protected List<String> tags;
 
   public SaucePlaywrightExtension() {
-    this(DataCenter.US_WEST, List.of("playwright", "junit5", "java"));
+    this(DataCenter.EU_CENTRAL, List.of("playwright", "junit5", "java"));
   }
 
   public SaucePlaywrightExtension(List<String> tags) {
-    this(DataCenter.US_WEST, tags);
+    this(DataCenter.EU_CENTRAL, tags);
   }
 
   private SaucePlaywrightExtension(DataCenter dataCenter, List<String> tags) {

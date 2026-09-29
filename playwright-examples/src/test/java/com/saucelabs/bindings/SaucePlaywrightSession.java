@@ -20,7 +20,7 @@ import org.openqa.selenium.remote.SessionId;
 
 public class SaucePlaywrightSession {
   @Getter protected Playwright playwright;
-  @Getter @Setter private DataCenter dataCenter = DataCenter.US_WEST;
+  @Getter @Setter private DataCenter dataCenter = DataCenter.EU_CENTRAL;
   private final Map<String, Object> capabilities;
   @Setter private URL sauceUrl;
   @Getter private Boolean result;

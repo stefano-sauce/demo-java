@@ -30,10 +30,6 @@ The examples in this repository use environment variables, make sure you've adde
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test
 with
 
-    // If using the US DC
-     mvn clean test -Dtest=IOSAllowlistTest -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=IOSAllowlistTest -Dregion=eu
 
 The tests, which can be found [here](IOSAllowlistTest.java), will be executed on:

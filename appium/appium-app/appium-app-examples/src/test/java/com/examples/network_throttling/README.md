@@ -44,10 +44,6 @@ storage by doing the following from the folder `appium-app-examples`:
 ## Run tests on Sauce Labs iOS real devices
 If you want to run the tests on iOS Sauce Labs Real Devices then you can run the iOS test with
 
-    // If using the US DC
-    mvn clean test -Dtest=NetworkThrottlingIosRDCTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean test -Dtest=NetworkThrottlingIosRDCTest -Dregion=eu
 
 The tests, which can be found [here](NetworkThrottlingIosRDCTest.java), will be executed on:
@@ -62,10 +58,6 @@ expression.
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Android Sauce Labs Real Devices then you can run the Android test with
 
-    // If using the US DC
-    mvn clean test -Dtest=NetworkThrottlingAndroidRDCTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean test -Dtest=NetworkThrottlingAndroidRDCTest -Dregion=eu
 
 The tests, which can be found [here](NetworkThrottlingAndroidRDCTest.java), will be executed on:

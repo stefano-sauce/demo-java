@@ -57,10 +57,6 @@ storage by doing the following from the folder `appium-app-examples`:
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs real devices then you can run the Android test with
 
-    // If using the US DC
-    mvn clean test -Dtest=GesturesAndroidNativeAppTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean test -Dtest=GesturesAndroidNativeAppTest -Dregion=eu
     
 The tests will be executed on a Samsung Galaxy with OS Android 12.
@@ -70,10 +66,6 @@ The tests will be executed on a Samsung Galaxy with OS Android 12.
 ## Run tests on Sauce Labs iOS real devices
 If you want to run the tests on Sauce Labs real devices then you can run the iOS test with
 
-    // If using the US DC
-    mvn clean test  -Dtest=GesturesIOSNativeAppTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean test -Dtest=GesturesIOSNativeAppTest -Dregion=eu
     
 The tests will be executed on an iPhone with OS 14.

@@ -41,11 +41,6 @@ will look like this
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs real Android devices then you can run the Android test with
 
-    // If using the US DC
-    mvn clean test -Dtest=DownloadImageFromAndroidRealDevice -Dregion=us
-    mvn clean test -Dtest=UploadImageToAndroidRealDevice -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=DownloadImageFromAndroidRealDevice -Dregion=eu
      mvn clean test -Dtest=UploadImageToAndroidRealDevice -Dregion=eu
 The tests will be executed on a Samsung Galaxy S9.

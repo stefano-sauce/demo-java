@@ -21,7 +21,7 @@ import java.util.List;
 public class TestBase {
   public static final String DATA_CENTER = System.getProperty("sauce.region", "us");
   public static final String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
-  public static final String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+  public static final String SAUCE_US_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
   public static final String SAUCE_URL = DATA_CENTER.equals("us") ? SAUCE_US_URL : SAUCE_EU_URL;
   @RegisterExtension public SauceTestWatcher watcher = new SauceTestWatcher();
   AndroidDriver driver;

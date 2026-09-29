@@ -21,10 +21,6 @@ You need to upload the apps to the Sauce Storage. Please check [here](https://do
 ## Run tests on Sauce Labs Android real devices
 You can run the Android test on Sauce platform with:
 
-    // If using the US DC
-    mvn clean test -Dtest=MidSessionAppInstallsAndroidTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean test -Dtest=MidSessionAppInstallsAndroidTest -Dregion=eu
     
 The tests will be executed on any available Samsung device, OS 13.

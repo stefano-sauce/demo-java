@@ -60,7 +60,7 @@ public class RemoteWebDriverBuilderTest extends TestBase {
         RemoteWebDriver.builder()
             .oneOf(browserOptions)
             .setCapability("sauce:options", sauceOptions)
-            .address("https://ondemand.us-west-1.saucelabs.com/wd/hub")
+            .address("https://ondemand.eu-central-1.saucelabs.com/wd/hub")
             .config(config)
             .build();
     this.driver = driver;

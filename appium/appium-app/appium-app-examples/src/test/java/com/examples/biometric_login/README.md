@@ -70,10 +70,6 @@ please check [this](BiometricLoginAndroidRDCTest.java#L81) to see how to do that
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=BiometricLoginAndroidRDCTest -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=BiometricLoginAndroidRDCTest -Dregion=eu
     
 The tests, which can be found [here](BiometricLoginAndroidRDCTest.java), will be executed on:     
@@ -85,10 +81,6 @@ The tests, which can be found [here](BiometricLoginAndroidRDCTest.java), will be
 ## Run tests on Sauce Labs Android Emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=BiometricLoginAndroidEmuTest -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=BiometricLoginAndroidEmuTest -Dregion=eu
 
 The tests, which can be found [here](BiometricLoginAndroidEmuTest.java), will be executed on:
@@ -102,10 +94,6 @@ The tests, which can be found [here](BiometricLoginAndroidEmuTest.java), will be
 ## Run tests on Sauce Labs iOS real devices
 If you want to run the tests on iOS Sauce Labs Real Devices then you can run the iOS test with
 
-    // If using the US DC
-    mvn clean install -Dtest=BiometricLoginIosRDCTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean install -Dtest=BiometricLoginIosRDCTest -Dregion=eu
 
 The tests, which can be found [here](BiometricLoginIosRDCTest.java), will be executed on:
@@ -120,10 +108,6 @@ expression.
 ## Run tests on Sauce Labs iOS Simulators
 If you want to run the tests on Sauce Labs iOS simulators then you can run the Android test with
 
-    // If using the US DC
-    mvn clean install -Dtest=BiometricLoginIosSimTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean install -Dtest=BiometricLoginIosSimTest -Dregion=eu
 
 The tests, which can be found [here](BiometricLoginIosSimTest.java), will be executed on:

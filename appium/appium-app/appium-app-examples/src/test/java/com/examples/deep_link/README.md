@@ -54,10 +54,6 @@ storage by doing the following from the folder `appium-app-examples`:
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=DeepLinkAndroidTest -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=DeepLinkAndroidTest -Dregion=eu
     
 The tests, which can be found [here](AndroidNativeAppTest.java), will be executed on:     
@@ -69,10 +65,6 @@ The tests, which can be found [here](AndroidNativeAppTest.java), will be execute
 ## Run tests on Sauce Labs Android Emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=DeepLinkAndroidTest -Dregion=us -Drdc=false
-    
-    // If using the EU DC
      mvn clean test -Dtest=DeepLinkAndroidTest -Dregion=eu -Drdc=false
 
 The tests, which can be found [here](AndroidNativeAppTest.java), will be executed on:

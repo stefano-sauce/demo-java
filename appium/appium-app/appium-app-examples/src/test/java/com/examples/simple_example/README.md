@@ -49,10 +49,6 @@ storage by doing the following from the folder `appium-app-examples`:
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=AndroidNativeAppTest -Dregion=us
-    
-    // If using the EU DC
      mvn clean test -Dtest=AndroidNativeAppTest -Dregion=eu
     
 The tests, which can be found [here](AndroidNativeAppTest.java), will be executed on:     
@@ -64,10 +60,6 @@ The tests, which can be found [here](AndroidNativeAppTest.java), will be execute
 ## Run tests on Sauce Labs Android Emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
 
-    // If using the US DC
-     mvn clean test -Dtest=AndroidNativeAppTest -Dregion=us -Drdc=false
-    
-    // If using the EU DC
      mvn clean test -Dtest=AndroidNativeAppTest -Dregion=eu -Drdc=false
 
 The tests, which can be found [here](AndroidNativeAppTest.java), will be executed on:
@@ -78,10 +70,6 @@ The tests, which can be found [here](AndroidNativeAppTest.java), will be execute
 ## Run tests on Sauce Labs iOS real devices
 If you want to run the tests on iOS Sauce Labs Real Devices then you can run the iOS test with
 
-    // If using the US DC
-    mvn clean install -Dtest=IOSNativeAppTest -Dregion=us
-    
-    // If using the EU DC
     mvn clean install -Dtest=IOSNativeAppTest -Dregion=eu
 
 The tests, which can be found [here](IOSNativeAppTest.java), will be executed on:
@@ -95,10 +83,6 @@ expression.
 ## Run tests on Sauce Labs iOS Simulators
 If you want to run the tests on Sauce Labs iOS simulators then you can run the Android test with
 
-    // If using the US DC
-    mvn clean install -Dtest=IOSNativeAppTest -Dregion=us -Drdc=false
-    
-    // If using the EU DC
     mvn clean install -Dtest=IOSNativeAppTest -Dregion=eu -Drdc=false
 
 The tests, which can be found [here](IOSNativeAppTest.java), will be executed on:

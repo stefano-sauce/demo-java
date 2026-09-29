@@ -53,7 +53,7 @@ public class SeleniumTest {
     sauceOptions.put("tags", tags);
     options.setCapability("sauce:options", sauceOptions);
 
-    String region = System.getenv().getOrDefault("REGION", "us-west-1");
+    String region = System.getenv().getOrDefault("REGION", "eu-central-1");
     String ondemandUrl = "https://ondemand." + region + ".saucelabs.com:443/wd/hub";
     URL url = new URL(ondemandUrl);
 

@@ -39,8 +39,8 @@ public class StandaloneTest {
 
   static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
   static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-  static final String SAUCE_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub/";
-  static SauceREST sauceREST = new SauceREST(SAUCE_USERNAME, SAUCE_ACCESS_KEY, DataCenter.US_WEST);
+  static final String SAUCE_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub/";
+  static SauceREST sauceREST = new SauceREST(SAUCE_USERNAME, SAUCE_ACCESS_KEY, DataCenter.EU_CENTRAL);
   static APIRequestContext request;
   static Playwright playwright;
   @RegisterExtension public SauceTestWatcher watcher = new SauceTestWatcher();
