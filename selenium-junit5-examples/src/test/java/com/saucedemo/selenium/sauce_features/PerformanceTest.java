@@ -32,7 +32,9 @@ public class PerformanceTest extends TestBase {
   public void setup(TestInfo testInfo) {
     ChromeOptions options = new ChromeOptions();
     options.setPlatformName("Windows 10");
-    options.setBrowserVersion("117");
+    // Sauce Performance only supports the latest 3 Chrome desktop versions, so don't pin one.
+    // https://docs.saucelabs.com/performance/about/
+    options.setBrowserVersion("latest");
 
     Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
     sauceOptions.put("capturePerformance", true);
