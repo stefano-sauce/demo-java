@@ -1,5 +1,6 @@
 package com.examples.network_throttling;
 
+import com.examples.SauceTags;
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
@@ -101,7 +102,7 @@ public class NetworkThrottlingAndroidRDCTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new AndroidDriver(getAppiumUrl(), capabilities);
+            driver = new AndroidDriver(getAppiumUrl(), SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create the Android Driver: " + e.getMessage());
             throw e;

@@ -1,5 +1,6 @@
 package com.examples.find_by_image;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -92,7 +93,7 @@ public class AndroidFindByImageTest {
         capabilities.setCapability("appium:settings", settingsOptions);
 
         try {
-            driver = new AndroidDriver(url, capabilities);
+            driver = new AndroidDriver(url, SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create Android Driver: " + e.getMessage());
             return;

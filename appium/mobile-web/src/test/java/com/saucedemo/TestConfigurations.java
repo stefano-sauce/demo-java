@@ -49,7 +49,7 @@ public class TestConfigurations {
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
-    return new MutableCapabilities(caps);
+    return SauceTags.apply(new MutableCapabilities(caps));
   }
 
   private static Capabilities androidRDC(TestInfo testInfo, List<String> tags) {
@@ -71,7 +71,7 @@ public class TestConfigurations {
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
-    return new MutableCapabilities(caps);
+    return SauceTags.apply(new MutableCapabilities(caps));
   }
 
   private static Capabilities iosVDC(TestInfo testInfo, List<String> tags) {
@@ -90,7 +90,7 @@ public class TestConfigurations {
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
-    return new MutableCapabilities(caps);
+    return SauceTags.apply(new MutableCapabilities(caps));
   }
 
   private static Capabilities iosRDC(TestInfo testInfo, List<String> tags) {
@@ -112,6 +112,6 @@ public class TestConfigurations {
     sauceOptions.put("tags", tags);
     caps.put("sauce:options", sauceOptions);
 
-    return new MutableCapabilities(caps);
+    return SauceTags.apply(new MutableCapabilities(caps));
   }
 }

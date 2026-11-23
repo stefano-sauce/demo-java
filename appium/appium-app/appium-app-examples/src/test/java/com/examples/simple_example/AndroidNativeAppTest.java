@@ -7,6 +7,7 @@ import static com.helpers.Constants.region;
 import static java.time.Duration.ofSeconds;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -86,7 +87,7 @@ public class AndroidNativeAppTest {
 
     capabilities.setCapability("sauce:options", sauceOptions);
 
-    driver = new AndroidDriver(url, capabilities);
+    driver = new AndroidDriver(url, SauceTags.apply(capabilities));
 
     System.out.println("Job ID is: " + driver.getCapabilities().getCapability("appium:jobUuid"));
     // Setting the driver so that we can report results

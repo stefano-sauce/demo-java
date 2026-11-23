@@ -1,5 +1,6 @@
 package com.examples.deep_link;
 
+import com.examples.SauceTags;
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.ios.IOSDriver;
@@ -70,7 +71,7 @@ public class DeepLinkIosRDCTest {
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new IOSDriver(url, capabilities);
+        driver = new IOSDriver(url, SauceTags.apply(capabilities));
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);

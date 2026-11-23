@@ -71,9 +71,9 @@ public class AppiumTest {
     URL url = new URL(ondemandUrl);
 
     if ("iOS".equalsIgnoreCase(platformName)) {
-      driver = new IOSDriver(url, options);
+      driver = new IOSDriver(url, SauceTags.apply(options));
     } else {
-      driver = new AndroidDriver(url, options);
+      driver = new AndroidDriver(url, SauceTags.apply(options));
     }
   }
 

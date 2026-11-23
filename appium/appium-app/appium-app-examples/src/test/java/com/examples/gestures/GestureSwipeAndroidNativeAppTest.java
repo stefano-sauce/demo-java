@@ -6,6 +6,7 @@ package com.examples.gestures;
 // The demo App:
 // https://github.com/saucelabs/my-demo-app-android
 
+import com.examples.SauceTags;
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
@@ -90,7 +91,7 @@ public class GestureSwipeAndroidNativeAppTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new AndroidDriver(url, capabilities);
+            driver = new AndroidDriver(url, SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create Android Driver: " + e.getMessage());
             return;

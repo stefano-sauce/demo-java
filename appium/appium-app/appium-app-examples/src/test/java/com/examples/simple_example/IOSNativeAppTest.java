@@ -6,6 +6,7 @@ import static com.helpers.Constants.rdc;
 import static com.helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
@@ -80,7 +81,7 @@ public class IOSNativeAppTest {
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     capabilities.setCapability("sauce:options", sauceOptions);
 
-    driver = new IOSDriver(url, capabilities);
+    driver = new IOSDriver(url, SauceTags.apply(capabilities));
 
     // Setting the driver so that we can report results
     resultReportingTestWatcher.setDriver(driver);

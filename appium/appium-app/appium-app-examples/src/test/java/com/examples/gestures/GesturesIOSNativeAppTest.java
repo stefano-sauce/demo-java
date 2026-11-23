@@ -1,5 +1,6 @@
 package com.examples.gestures;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
@@ -72,7 +73,7 @@ public class GesturesIOSNativeAppTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-        driver = new IOSDriver(url, capabilities);
+        driver = new IOSDriver(url, SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create iOS Driver: " + e.getMessage());
         }

@@ -72,7 +72,7 @@ public class TestBase {
       throw new RuntimeException(e);
     }
 
-    driver = new RemoteWebDriver(url, options);
+    driver = new RemoteWebDriver(url, SauceTags.apply((MutableCapabilities) options));
     this.id = ((RemoteWebDriver) driver).getSessionId();
   }
 

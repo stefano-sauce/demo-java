@@ -1,5 +1,6 @@
 package com.examples.mid_session_app_installs;
 
+import com.examples.SauceTags;
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.android.AndroidDriver;
@@ -75,7 +76,7 @@ public class MidSessionAppInstallsAndroidTest {
     capabilities.setCapability("sauce:options", sauceOptions);
 
     try {
-      driver = new AndroidDriver(url, capabilities);
+      driver = new AndroidDriver(url, SauceTags.apply(capabilities));
     } catch (Exception e) {
       System.out.println("Error to create Android Driver: " + e.getMessage());
       return;

@@ -121,7 +121,7 @@ public class ErrorReportingCrashTest extends TestBase {
 
     caps.put("sauce:options", sauceOptions);
 
-    driver = new AndroidDriver(new URL(SAUCE_URL), new MutableCapabilities(caps));
+    driver = new AndroidDriver(new URL(SAUCE_URL), SauceTags.apply(new MutableCapabilities(caps)));
     driver.manage().timeouts().implicitlyWait(Duration.of(5, ChronoUnit.SECONDS));
   }
 

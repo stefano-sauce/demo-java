@@ -1,5 +1,6 @@
 package com.examples.network_throttling;
 
+import com.examples.SauceTags;
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.ios.IOSDriver;
@@ -98,7 +99,7 @@ public class NetworkThrottlingIosRDCTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new IOSDriver(getAppiumUrl(), capabilities);
+            driver = new IOSDriver(getAppiumUrl(), SauceTags.apply(capabilities));
         } catch (Exception e) {
             System.out.println("Error to create the iOS Driver: " + e.getMessage());
             throw e;

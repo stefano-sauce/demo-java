@@ -77,7 +77,7 @@ public class StepDefinitions {
         break;
     }
 
-    session.set(new SauceSession(options.get()));
+    session.set(new SauceSession(SauceTags.apply(options.get())));
 
     getSession().start();
     wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));

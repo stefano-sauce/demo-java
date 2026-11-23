@@ -1,6 +1,7 @@
 package com.examples.image_injection;
 
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -90,7 +91,7 @@ public class ImageInjectionAndroidTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new AndroidDriver(url, capabilities);
+            driver = new AndroidDriver(url, SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create Android Driver: " + e.getMessage());
         }
