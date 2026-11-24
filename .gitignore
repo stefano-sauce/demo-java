@@ -31,3 +31,6 @@ hs_err_pid*
 *.classpath
 **/.vscode
 *.project
+# Files written by test runs
+selenium-junit5-examples/FullPage.png
+appium/appium-app/appium-app-examples/src/test/java/com/examples/up_download_file/samsung_real_device/
