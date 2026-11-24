@@ -1,10 +1,13 @@
 package com.saucedemo.selenium.testng;
 
+import com.saucelabs.saucebindings.DataCenter;
+import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import com.saucelabs.saucebindings.testng.SauceParameterizedBaseTest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -12,6 +15,30 @@ import org.testng.annotations.Test;
  * Tests whoing how to run cross browser tests with TestNG Sauce Bindings jar when Parameterized.
  */
 public class CrossBrowserPlatformTest extends SauceParameterizedBaseTest {
+  private static final ThreadLocal<SauceSession> session = new ThreadLocal<>();
+
+  @Override
+  public SauceSession getSession() {
+    return session.get();
+  }
+
+  /**
+   * SauceParameterizedBaseTest always starts the session in the default US West data center, so
+   * this overrides it to start in EU Central, where this org runs everything.
+   */
+  @Override
+  @BeforeMethod
+  protected void setup(Method method, Object[] parameters) {
+    SauceOptions sauceOptions = createSauceOptions(method, parameters);
+    if (sauceOptions.sauce().getName() == null) {
+      sauceOptions.sauce().setName(method.getName());
+    }
+    SauceSession sauceSession = new SauceSession(sauceOptions);
+    sauceSession.setDataCenter(DataCenter.EU_CENTRAL);
+    session.set(sauceSession);
+    sauceSession.start();
+  }
+
   @DataProvider(name = "sauceBrowsers", parallel = true)
   public static Object[][] sauceBrowserDataProvider() {
     return new Object[][] {

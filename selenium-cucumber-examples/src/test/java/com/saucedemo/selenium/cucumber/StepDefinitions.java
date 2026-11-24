@@ -1,6 +1,7 @@
 package com.saucedemo.selenium.cucumber;
 
 import com.saucelabs.saucebindings.Browser;
+import com.saucelabs.saucebindings.DataCenter;
 import com.saucelabs.saucebindings.SaucePlatform;
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
@@ -78,6 +79,8 @@ public class StepDefinitions {
     }
 
     session.set(new SauceSession(SauceTags.apply(options.get())));
+    // Sauce Bindings default to US West; this org runs everything in EU Central.
+    getSession().setDataCenter(DataCenter.EU_CENTRAL);
 
     getSession().start();
     wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
