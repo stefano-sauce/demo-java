@@ -1,5 +1,6 @@
 package com.examples.up_download_file;
 
+import com.examples.SauceTags;
 import com.helpers.Constants;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.android.AndroidDriver;
@@ -71,7 +72,7 @@ public class UploadImageToAndroidRealDevice {
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new AndroidDriver(url, capabilities);
+        driver = new AndroidDriver(url, SauceTags.apply(capabilities));
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);

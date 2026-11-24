@@ -14,7 +14,7 @@ public class ParallelSingleBrowserTest extends SauceBaseTest {
   protected SauceOptions createSauceOptions() {
     SauceOptions sauceOptions = super.createSauceOptions();
     sauceOptions.sauce().setTags(Arrays.asList(TAGS));
-    return sauceOptions;
+    return SauceTags.apply(sauceOptions);
   }
 
   @Test(groups = {"selenium", "testng", "java", "parallel_execution"})

@@ -1,5 +1,6 @@
 package com.saucedemo.selenium.selenium_features;
 
+import com.saucedemo.selenium.SauceTags;
 import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
 import java.util.HashMap;
@@ -53,13 +54,13 @@ public class RemoteWebDriverBuilderTest extends TestBase {
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("tags", sauceTags());
+    browserOptions.setCapability("sauce:options", sauceOptions);
 
     ClientConfig config = ClientConfig.defaultConfig().readTimeout(Duration.ofMinutes(3));
 
     WebDriver driver =
         RemoteWebDriver.builder()
-            .oneOf(browserOptions)
-            .setCapability("sauce:options", sauceOptions)
+            .oneOf(SauceTags.apply(browserOptions))
             .address("https://ondemand.eu-central-1.saucelabs.com/wd/hub")
             .config(config)
             .build();

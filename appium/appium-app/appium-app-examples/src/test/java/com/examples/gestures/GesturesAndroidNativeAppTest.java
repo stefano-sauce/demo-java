@@ -1,5 +1,6 @@
 package com.examples.gestures;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
@@ -85,7 +86,7 @@ public class GesturesAndroidNativeAppTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new AndroidDriver(url, capabilities);
+            driver = new AndroidDriver(url, SauceTags.apply(capabilities));
         } catch (Exception e){
             System.out.println("Error to create Android Driver: " + e.getMessage());
             return;

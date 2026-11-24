@@ -1,5 +1,6 @@
 package com.examples.biometric_login;
 
+import com.examples.SauceTags;
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
@@ -84,7 +85,7 @@ public class BiometricLoginAndroidRDCTest {
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new AndroidDriver(url, capabilities);
+        driver = new AndroidDriver(url, SauceTags.apply(capabilities));
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);

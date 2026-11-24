@@ -5,6 +5,7 @@ import com.microsoft.playwright.Page;
 import com.saucelabs.bindings.SaucePlaywrightSession;
 import com.saucelabs.saucebindings.CITools;
 import com.saucelabs.saucebindings.DataCenter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,10 @@ import org.junit.jupiter.api.extension.TestWatcher;
 public class SaucePlaywrightExtension
     implements TestWatcher, BeforeEachCallback, ParameterResolver {
   private static final Logger LOGGER = Logger.getLogger(SaucePlaywrightExtension.class.getName());
+
+  /** Sauce Labs tag identifying jobs from this repo, shared by every test. */
+  public static final String REPO_TAG = "repo:demo-java";
+
   private static final String BROWSER_NAME = System.getProperty("sauce.browser", "Chrome");
   private final String build;
   protected Map<String, Object> capabilities;
@@ -62,7 +67,9 @@ public class SaucePlaywrightExtension
     sauceOptions.put("_tptCommanderVersion", "stable");
     sauceOptions.put("name", getTestName(context));
     sauceOptions.put("build", CITools.getBuildName() + ": " + CITools.getBuildNumber());
-    sauceOptions.put("tags", tags);
+    List<String> sessionTags = new ArrayList<>(tags);
+    sessionTags.add(REPO_TAG);
+    sauceOptions.put("tags", sessionTags);
 
     Map<String, Object> sessionRequest = new HashMap<>();
     sessionRequest.put("platformName", "macOS 13");

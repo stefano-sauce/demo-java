@@ -1,5 +1,6 @@
 package com.saucedemo.selenium.testng.demo;
 
+import com.saucedemo.selenium.testng.SauceTags;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import com.saucelabs.saucebindings.testng.SauceBaseTest;
 import java.util.Arrays;
@@ -12,7 +13,7 @@ public class SauceBindingsTestngTest extends SauceBaseTest {
   protected SauceOptions createSauceOptions() {
     SauceOptions sauceOptions = super.createSauceOptions();
     sauceOptions.sauce().setTags(Arrays.asList("selenium", "testng", "java", "login"));
-    return sauceOptions;
+    return SauceTags.apply(sauceOptions);
   }
 
   @Test(groups = {"selenium", "testng", "java", "login"})

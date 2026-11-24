@@ -4,6 +4,7 @@ import static com.saucedemo.Constants.SAUCE_EU_URL;
 import static com.saucedemo.Constants.SAUCE_US_URL;
 import static com.saucedemo.Constants.region;
 
+import com.saucedemo.SauceTags;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -144,7 +145,7 @@ public class BaseTest {
     caps.setCapability("sauce:options", sauceOptions);
 
     try {
-      driver = new RemoteWebDriver(url, caps);
+      driver = new RemoteWebDriver(url, SauceTags.apply(caps));
 
     } catch (Exception e) {
       System.out.println("*** Problem to create the driver " + e.getMessage());

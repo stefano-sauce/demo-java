@@ -59,7 +59,7 @@ public class StepDefinitions {
 //        sauceOptions.setCapability("noReset", "true");
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new IOSDriver(url, capabilities);
+        driver = new IOSDriver(url, SauceTags.apply(capabilities));
 
         resultReportingTestWatcher.setDriver(driver);
     }

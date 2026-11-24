@@ -1,5 +1,6 @@
 package com.saucedemo.selenium.testng.demo;
 
+import com.saucedemo.selenium.testng.SauceTags;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -32,7 +33,7 @@ public class SeleniumTest {
     options.setCapability("sauce:options", sauceOptions);
     URL url = new URL("https://ondemand.eu-central-1.saucelabs.com/wd/hub");
 
-    driver = new RemoteWebDriver(url, options);
+    driver = new RemoteWebDriver(url, SauceTags.apply(options));
   }
 
   @Test(groups = {"selenium", "testng", "java", "login"})

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.saucedemo.Endpoints;
 import com.saucedemo.MobileTestsBase;
+import com.saucedemo.SauceTags;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
 import io.appium.java_client.ios.IOSDriver;
@@ -65,7 +66,7 @@ public class RealDeviceWebTests extends MobileTestsBase {
 
     capabilities.setCapability("sauce:options", sauceOptions);
 
-    driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
+    driver = new IOSDriver(Endpoints.getRealDevicesHub(), SauceTags.apply(capabilities));
   }
 
   @Test

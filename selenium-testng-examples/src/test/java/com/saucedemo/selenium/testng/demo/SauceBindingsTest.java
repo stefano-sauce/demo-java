@@ -1,5 +1,6 @@
 package com.saucedemo.selenium.testng.demo;
 
+import com.saucedemo.selenium.testng.SauceTags;
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -24,7 +25,7 @@ public class SauceBindingsTest {
             .setName(method.getName())
             .setTags(Arrays.asList("selenium", "testng", "java", "login"))
             .build();
-    session = new SauceSession(options);
+    session = new SauceSession(SauceTags.apply(options));
     driver = session.start();
   }
 

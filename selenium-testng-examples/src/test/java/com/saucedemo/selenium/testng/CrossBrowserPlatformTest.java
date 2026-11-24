@@ -41,7 +41,7 @@ public class CrossBrowserPlatformTest extends SauceParameterizedBaseTest {
     sauceOptions.setCapability("browserVersion", parameters[1]);
     sauceOptions.setCapability("platformName", parameters[2]);
     sauceOptions.sauce().setTags(Arrays.asList("selenium", "testng", "java", "cross_browser"));
-    return sauceOptions;
+    return SauceTags.apply(sauceOptions);
   }
 
   @Test(dataProvider = "sauceBrowsers", groups = {"selenium", "testng", "java", "cross_browser"})

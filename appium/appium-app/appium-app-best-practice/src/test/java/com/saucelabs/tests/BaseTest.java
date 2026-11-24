@@ -109,7 +109,7 @@ public class BaseTest {
         caps.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver.set(new AppiumDriver(url, caps));
+            driver.set(new AppiumDriver(url, SauceTags.apply(caps)));
         } catch (Exception e) {
             System.out.println("*** Problem to create the driver " + e.getMessage());
             throw new RuntimeException(e);

@@ -15,6 +15,7 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
+import com.saucelabs.extensions.SaucePlaywrightExtension;
 import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.saucerest.SauceREST;
 import java.io.IOException;
@@ -89,6 +90,7 @@ public class StandaloneTest {
     tags.add("junit5");
     tags.add("java");
     tags.add("standalone_session");
+    tags.add(SaucePlaywrightExtension.REPO_TAG);
     sauceOptions.add("tags", tags);
 
     JsonObject sessionRequest = new JsonObject();

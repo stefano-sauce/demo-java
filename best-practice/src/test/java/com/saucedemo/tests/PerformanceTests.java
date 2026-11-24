@@ -1,5 +1,6 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.SauceTags;
 import com.saucedemo.pages.LoginPage;
 import com.saucelabs.saucebindings.junit4.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
@@ -11,12 +12,13 @@ import org.junit.Test;
 public class PerformanceTests extends SauceBaseTest {
   @Override
   public SauceOptions createSauceOptions() {
-    return SauceOptions.chrome()
-        .setExtendedDebugging()
-        .setName(testName.getMethodName())
-        .setCapturePerformance()
-        .setTags(Arrays.asList("selenium", "junit4", "java", "performance"))
-        .build();
+    return SauceTags.apply(
+        SauceOptions.chrome()
+            .setExtendedDebugging()
+            .setName(testName.getMethodName())
+            .setCapturePerformance()
+            .setTags(Arrays.asList("selenium", "junit4", "java", "performance"))
+            .build());
   }
 
   @Test

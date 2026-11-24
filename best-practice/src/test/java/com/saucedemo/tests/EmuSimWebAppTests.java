@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.saucedemo.Endpoints;
 import com.saucedemo.MobileTestsBase;
+import com.saucedemo.SauceTags;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
 import java.net.MalformedURLException;
@@ -84,7 +85,7 @@ public class EmuSimWebAppTests extends MobileTestsBase {
     capabilities.setCapability("sauce:options", sauceOptions);
     // EmuSim devices have Simulator/Emulator in the name
 
-    driver = new RemoteWebDriver(Endpoints.getEmuSimHub(), capabilities);
+    driver = new RemoteWebDriver(Endpoints.getEmuSimHub(), SauceTags.apply(capabilities));
   }
 
   @Test

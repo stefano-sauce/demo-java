@@ -57,7 +57,7 @@ public class SeleniumTest {
     String ondemandUrl = "https://ondemand." + region + ".saucelabs.com:443/wd/hub";
     URL url = new URL(ondemandUrl);
 
-    driver = new RemoteWebDriver(url, options);
+    driver = new RemoteWebDriver(url, SauceTags.apply(options));
   }
 
   @DisplayName("Selenium Test from Gitpod")
